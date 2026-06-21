@@ -43,6 +43,15 @@ class ToolService(
         (repository.findBySlug(slug) ?: throw EntityNotFoundException("Tool '$slug' not found"))
             .toResponse()
 
+    @Transactional
+    fun registerAffiliateClick(slug: String) {
+        val tool = repository.findBySlug(slug)
+            ?: throw EntityNotFoundException("Tool '$slug' not found")
+
+        tool.affiliateClicks += 1
+        repository.save(tool)
+    }
+
     @Transactional(readOnly = true)
     fun getCatalogSummary(featuredLimit: Int = 3): ToolCatalogSummaryResponse =
         repository.findAll().toCatalogSummary(featuredLimit)

@@ -38,6 +38,10 @@ class ToolController(
     @GetMapping("/{slug}")
     fun getTool(@PathVariable slug: String): ToolResponse = service.findBySlug(slug)
 
+    @PostMapping("/{slug}/click")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun recordAffiliateClick(@PathVariable slug: String) = service.registerAffiliateClick(slug)
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun createTool(@Valid @RequestBody request: ToolCreateRequest): ToolResponse =

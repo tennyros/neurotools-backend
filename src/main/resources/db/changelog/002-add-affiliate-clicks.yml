@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-add-affiliate-clicks
+      author: codex
+      changes:
+        - addColumn:
+            tableName: ai_tools
+            columns:
+              - column:
+                  name: affiliate_clicks
+                  type: int
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false

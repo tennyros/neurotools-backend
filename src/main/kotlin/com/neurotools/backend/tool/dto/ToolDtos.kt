@@ -21,6 +21,7 @@ data class ToolResponse(
     val description: String,
     val fullDescription: String,
     val affiliateLink: String,
+    val affiliateClicks: Int,
     val pricing: ToolPricing,
     val pros: List<String>,
     val cons: List<String>,

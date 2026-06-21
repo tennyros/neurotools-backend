@@ -46,6 +46,9 @@ class ToolEntity(
     @Column(name = "affiliate_link", nullable = false, length = 1000)
     var affiliateLink: String,
 
+    @Column(name = "affiliate_clicks", nullable = false)
+    var affiliateClicks: Int = 0,
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     var pricing: ToolPricing,
