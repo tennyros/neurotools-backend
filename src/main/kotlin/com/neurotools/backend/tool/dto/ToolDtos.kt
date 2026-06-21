@@ -26,7 +26,17 @@ data class ToolResponse(
     val pros: List<String>,
     val cons: List<String>,
     val createdAt: Instant,
-    val updatedAt: Instant
+    val updatedAt: Instant,
+    val externalSource: String?,
+    val externalId: String?,
+    val provider: String?,
+    val downloads: Int,
+    val likes: Int,
+    val ratingExternal: BigDecimal?,
+    val tags: List<String>?,
+    val previewImages: List<String>?,
+    val metadata: Map<String, Any>?,
+    val lastSyncAt: Instant?
 )
 
 data class ToolCreateRequest(

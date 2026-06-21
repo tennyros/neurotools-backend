@@ -65,5 +65,38 @@ class ToolEntity(
     var createdAt: Instant = Instant.now(),
 
     @Column(name = "updated_at", nullable = false)
-    var updatedAt: Instant = Instant.now()
+    var updatedAt: Instant = Instant.now(),
+
+    @Column(name = "external_source", length = 20)
+    var externalSource: String? = null,
+
+    @Column(name = "external_id", length = 255)
+    var externalId: String? = null,
+
+    @Column(length = 100)
+    var provider: String? = null,
+
+    @Column(nullable = false)
+    var downloads: Int = 0,
+
+    @Column(nullable = false)
+    var likes: Int = 0,
+
+    @Column(name = "rating_external", precision = 3, scale = 2)
+    var ratingExternal: BigDecimal? = null,
+
+    @Column(columnDefinition = "text[]")
+    @JdbcTypeCode(SqlTypes.ARRAY)
+    var tags: Array<String>? = null,
+
+    @Column(name = "preview_images", columnDefinition = "text[]")
+    @JdbcTypeCode(SqlTypes.ARRAY)
+    var previewImages: Array<String>? = null,
+
+    @Column(columnDefinition = "jsonb")
+    @JdbcTypeCode(SqlTypes.JSON)
+    var metadata: Map<String, Any>? = null,
+
+    @Column(name = "last_sync_at")
+    var lastSyncAt: Instant? = null
 )

@@ -23,7 +23,17 @@ fun ToolEntity.toResponse(): ToolResponse =
         pros = pros.toList(),
         cons = cons.toList(),
         createdAt = createdAt,
-        updatedAt = updatedAt
+        updatedAt = updatedAt,
+        externalSource = externalSource,
+        externalId = externalId,
+        provider = provider,
+        downloads = downloads,
+        likes = likes,
+        ratingExternal = ratingExternal,
+        tags = tags?.toList(),
+        previewImages = previewImages?.toList(),
+        metadata = metadata,
+        lastSyncAt = lastSyncAt
     )
 
 fun ToolCreateRequest.toEntity(): ToolEntity =

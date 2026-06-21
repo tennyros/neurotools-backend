@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/001-create-ai-tools.yml
   - include:
       file: db/changelog/002-add-affiliate-clicks.yml
+  - include:
+      file: db/changelog/005-add-external-metadata.yml

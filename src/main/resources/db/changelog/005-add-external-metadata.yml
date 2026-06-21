@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-add-external-metadata
+      author: codex
+      changes:
+        - addColumn:
+            tableName: ai_tools
+            columns:
+              - column:
+                  name: external_source
+                  type: varchar(20)
+              - column:
+                  name: external_id
+                  type: varchar(255)
+              - column:
+                  name: provider
+                  type: varchar(100)
+              - column:
+                  name: downloads
+                  type: int
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: likes
+                  type: int
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rating_external
+                  type: numeric(3,2)
+              - column:
+                  name: tags
+                  type: text[]
+              - column:
+                  name: preview_images
+                  type: text[]
+              - column:
+                  name: metadata
+                  type: jsonb
+              - column:
+                  name: last_sync_at
+                  type: timestamp with time zone
+        - createIndex:
+            tableName: ai_tools
+            indexName: idx_external_unique
+            unique: true
+            columns:
+              - column:
+                  name: external_source
+              - column:
+                  name: external_id
+        - createIndex:
+            tableName: ai_tools
+            indexName: idx_external_source
+            columns:
+              - column:
+                  name: external_source

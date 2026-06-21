@@ -15,6 +15,21 @@ spring:
   liquibase:
     change-log: classpath:/db/changelog/db.changelog-master.yml
 
+neurotools:
+  integration:
+    huggingface:
+      api-url: ${HUGGINGFACE_API_URL:https://huggingface.co/api}
+      timeout: ${HUGGINGFACE_TIMEOUT_MS:10000}
+      max-models: ${HUGGINGFACE_MAX_MODELS:20}
+    civitai:
+      api-url: ${CIVITAI_API_URL:https://civitai.com/api/v1}
+      api-key: ${CIVITAI_API_KEY:}
+      timeout: ${CIVITAI_TIMEOUT_MS:10000}
+      max-models: ${CIVITAI_MAX_MODELS:20}
+  sync:
+    enabled: ${SYNC_ENABLED:true}
+    schedule: ${SYNC_CRON:0 0 4 * * *}
+
 server:
   port: ${PORT:8080}
 
