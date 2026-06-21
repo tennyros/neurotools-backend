@@ -1,0 +1,218 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-ai-tools
+      author: codex
+      changes:
+        - createTable:
+            tableName: ai_tools
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: slug
+                  type: varchar(120)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: name
+                  type: varchar(180)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category
+                  type: varchar(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rating
+                  type: numeric(2,1)
+                  defaultValueNumeric: 0.0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: votes
+                  type: int
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: full_description
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: affiliate_link
+                  type: varchar(1000)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: pricing
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: pros
+                  type: text[]
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cons
+                  type: text[]
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  defaultValueComputed: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  defaultValueComputed: now()
+                  constraints:
+                    nullable: false
+        - createIndex:
+            tableName: ai_tools
+            indexName: idx_ai_tools_category
+            columns:
+              - column:
+                  name: category
+        - createIndex:
+            tableName: ai_tools
+            indexName: idx_ai_tools_rating
+            columns:
+              - column:
+                  name: rating
+                  descending: true
+  - changeSet:
+      id: 002-seed-ai-tools
+      author: codex
+      changes:
+        - insert:
+            tableName: ai_tools
+            columns:
+              - column:
+                  name: id
+                  value: 11111111-1111-4111-8111-111111111111
+              - column:
+                  name: slug
+                  value: chatgpt
+              - column:
+                  name: name
+                  value: ChatGPT
+              - column:
+                  name: category
+                  value: Текстовые
+              - column:
+                  name: rating
+                  valueNumeric: 4.8
+              - column:
+                  name: votes
+                  valueNumeric: 1247
+              - column:
+                  name: description
+                  value: Популярная нейросеть для генерации текста
+              - column:
+                  name: full_description
+                  value: ChatGPT — это чат-бот на основе GPT-4...
+              - column:
+                  name: affiliate_link
+                  value: https://chat.openai.com
+              - column:
+                  name: pricing
+                  value: FREEMIUM
+              - column:
+                  name: pros
+                  value: '{"Бесплатная версия","Огромные возможности","Мультиязычность"}'
+              - column:
+                  name: cons
+                  value: '{"Платный GPT-4","Нагрузка на сервера"}'
+        - insert:
+            tableName: ai_tools
+            columns:
+              - column:
+                  name: id
+                  value: 22222222-2222-4222-8222-222222222222
+              - column:
+                  name: slug
+                  value: midjourney
+              - column:
+                  name: name
+                  value: Midjourney
+              - column:
+                  name: category
+                  value: Изображения
+              - column:
+                  name: rating
+                  valueNumeric: 4.7
+              - column:
+                  name: votes
+                  valueNumeric: 856
+              - column:
+                  name: description
+                  value: Генерация изображений по тексту
+              - column:
+                  name: full_description
+                  value: Midjourney — нейросеть для создания изображений...
+              - column:
+                  name: affiliate_link
+                  value: https://midjourney.com
+              - column:
+                  name: pricing
+                  value: PAID
+              - column:
+                  name: pros
+                  value: '{"Лучшее качество изображений","Уникальный стиль","Активное сообщество"}'
+              - column:
+                  name: cons
+                  value: '{"Только через Discord","Дорогой","Сложный интерфейс"}'
+        - insert:
+            tableName: ai_tools
+            columns:
+              - column:
+                  name: id
+                  value: 33333333-3333-4333-8333-333333333333
+              - column:
+                  name: slug
+                  value: qwen-coder
+              - column:
+                  name: name
+                  value: Qwen Coder
+              - column:
+                  name: category
+                  value: Код
+              - column:
+                  name: rating
+                  valueNumeric: 4.5
+              - column:
+                  name: votes
+                  valueNumeric: 423
+              - column:
+                  name: description
+                  value: Локальная LLM для программирования
+              - column:
+                  name: full_description
+                  value: Qwen Coder — мощная языковая модель...
+              - column:
+                  name: affiliate_link
+                  value: https://ollama.com/library/qwen2.5-coder
+              - column:
+                  name: pricing
+                  value: FREE
+              - column:
+                  name: pros
+                  value: '{"Бесплатно","Приватно","Работает офлайн"}'
+              - column:
+                  name: cons
+                  value: '{"Требует мощного ПК","Медленнее облачных"}'
