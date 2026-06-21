@@ -18,8 +18,6 @@ docker compose up -d postgres minio
 
 ## Run
 
-Maven is required locally.
-
 ```bash
 mvn spring-boot:run
 ```
@@ -30,9 +28,17 @@ API starts on `http://localhost:8080`.
 
 - `GET /api/tools`
 - `GET /api/tools/{slug}`
-- `POST /api/tools`
-- `PUT /api/tools/{id}`
-- `DELETE /api/tools/{id}`
+- `POST /api/tools/{slug}/click`
+- `GET /api/tools/summary`
+- `POST /api/admin/sync`
+- `POST /api/admin/sync/{category}`
+- `GET /api/admin/sync/status`
+
+## CI/CD
+
+- GitHub Actions runs `mvn -B test` on pull requests and pushes.
+- Main branch pushes trigger the Render deploy hook when `RENDER_DEPLOY_HOOK_URL` is set in GitHub secrets.
+- `render.yaml` and `Dockerfile` define the production service.
 
 ## S3/MinIO
 
