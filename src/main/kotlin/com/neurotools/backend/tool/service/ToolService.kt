@@ -1,16 +1,10 @@
 package com.neurotools.backend.tool.service
 
 import jakarta.persistence.EntityNotFoundException
-import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.UUID
-import com.neurotools.backend.tool.dto.ToolCreateRequest
 import com.neurotools.backend.tool.dto.ToolResponse
-import com.neurotools.backend.tool.dto.ToolUpdateRequest
 import com.neurotools.backend.tool.entity.ToolEntity
-import com.neurotools.backend.tool.mapper.applyUpdate
-import com.neurotools.backend.tool.mapper.toEntity
 import com.neurotools.backend.tool.mapper.toResponse
 import com.neurotools.backend.tool.repository.ToolRepository
 import com.neurotools.backend.tool.summary.ToolCatalogSummaryResponse
@@ -55,29 +49,4 @@ class ToolService(
     @Transactional(readOnly = true)
     fun getCatalogSummary(featuredLimit: Int = 3): ToolCatalogSummaryResponse =
         repository.findAll().toCatalogSummary(featuredLimit)
-
-    @Transactional
-    fun create(request: ToolCreateRequest): ToolResponse {
-        if (repository.existsBySlug(request.slug.trim())) {
-            throw DataIntegrityViolationException("Tool slug '${request.slug}' already exists")
-        }
-
-        return repository.save(request.toEntity()).toResponse()
-    }
-
-    @Transactional
-    fun update(id: UUID, request: ToolUpdateRequest): ToolResponse {
-        val tool = repository.findById(id)
-            .orElseThrow { EntityNotFoundException("Tool '$id' not found") }
-
-        return repository.save(tool.applyUpdate(request)).toResponse()
-    }
-
-    @Transactional
-    fun delete(id: UUID) {
-        if (!repository.existsById(id)) {
-            throw EntityNotFoundException("Tool '$id' not found")
-        }
-        repository.deleteById(id)
-    }
 }

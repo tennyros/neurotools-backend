@@ -1,11 +1,5 @@
 package com.neurotools.backend.tool.dto
 
-import jakarta.validation.constraints.DecimalMax
-import jakarta.validation.constraints.DecimalMin
-import jakarta.validation.constraints.Min
-import jakarta.validation.constraints.NotBlank
-import jakarta.validation.constraints.NotEmpty
-import jakarta.validation.constraints.Size
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.UUID
@@ -37,80 +31,4 @@ data class ToolResponse(
     val previewImages: List<String>?,
     val metadata: Map<String, Any>?,
     val lastSyncAt: Instant?
-)
-
-data class ToolCreateRequest(
-    @field:NotBlank
-    @field:Size(max = 120)
-    val slug: String,
-
-    @field:NotBlank
-    @field:Size(max = 180)
-    val name: String,
-
-    @field:NotBlank
-    @field:Size(max = 120)
-    val category: String,
-
-    @field:DecimalMin("0.0")
-    @field:DecimalMax("5.0")
-    val rating: BigDecimal = BigDecimal("0.0"),
-
-    @field:Min(0)
-    val votes: Int = 0,
-
-    @field:NotBlank
-    @field:Size(max = 500)
-    val description: String,
-
-    @field:NotBlank
-    val fullDescription: String,
-
-    @field:NotBlank
-    @field:Size(max = 1000)
-    val affiliateLink: String,
-
-    val pricing: ToolPricing,
-
-    @field:NotEmpty
-    val pros: List<String>,
-
-    @field:NotEmpty
-    val cons: List<String>
-)
-
-data class ToolUpdateRequest(
-    @field:NotBlank
-    @field:Size(max = 180)
-    val name: String,
-
-    @field:NotBlank
-    @field:Size(max = 120)
-    val category: String,
-
-    @field:DecimalMin("0.0")
-    @field:DecimalMax("5.0")
-    val rating: BigDecimal,
-
-    @field:Min(0)
-    val votes: Int,
-
-    @field:NotBlank
-    @field:Size(max = 500)
-    val description: String,
-
-    @field:NotBlank
-    val fullDescription: String,
-
-    @field:NotBlank
-    @field:Size(max = 1000)
-    val affiliateLink: String,
-
-    val pricing: ToolPricing,
-
-    @field:NotEmpty
-    val pros: List<String>,
-
-    @field:NotEmpty
-    val cons: List<String>
 )

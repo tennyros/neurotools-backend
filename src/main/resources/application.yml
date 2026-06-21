@@ -29,6 +29,7 @@ neurotools:
   sync:
     enabled: ${SYNC_ENABLED:true}
     schedule: ${SYNC_CRON:0 0 4 * * *}
+    startup-enabled: ${SYNC_STARTUP_ENABLED:true}
 
 server:
   port: ${PORT:8080}

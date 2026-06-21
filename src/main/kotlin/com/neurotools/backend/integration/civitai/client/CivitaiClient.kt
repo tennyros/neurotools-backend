@@ -15,9 +15,9 @@ import com.neurotools.backend.integration.civitai.dto.CivitaiModelPageResponse
 @Component
 class CivitaiClient(
     restTemplateBuilder: RestTemplateBuilder,
-    @Value("\${neurotools.integration.civitai.api-url}") private val baseUrl: String,
+    @Value("\${neurotools.integration.civitai.api-url:https://civitai.com/api/v1}") private val baseUrl: String,
     @Value("\${neurotools.integration.civitai.api-key:}") private val apiKey: String,
-    @Value("\${neurotools.integration.civitai.timeout}") timeoutMs: Long
+    @Value("\${neurotools.integration.civitai.timeout:10000}") timeoutMs: Long
 ) {
     private val log = LoggerFactory.getLogger(CivitaiClient::class.java)
     private val restTemplate = restTemplateBuilder

@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-delete-manual-tools
+      author: codex
+      changes:
+        - delete:
+            tableName: ai_tools
+            where: external_source IS NULL

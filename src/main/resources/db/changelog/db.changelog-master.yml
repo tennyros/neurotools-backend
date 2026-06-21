@@ -5,3 +5,5 @@ databaseChangeLog:
       file: db/changelog/002-add-affiliate-clicks.yml
   - include:
       file: db/changelog/005-add-external-metadata.yml
+  - include:
+      file: db/changelog/006-delete-manual-tools.yml

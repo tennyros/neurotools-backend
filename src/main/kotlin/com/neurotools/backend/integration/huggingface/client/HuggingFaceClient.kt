@@ -11,8 +11,8 @@ import com.neurotools.backend.integration.huggingface.dto.HuggingFaceModel
 @Component
 class HuggingFaceClient(
     restTemplateBuilder: RestTemplateBuilder,
-    @Value("\${neurotools.integration.huggingface.api-url}") private val baseUrl: String,
-    @Value("\${neurotools.integration.huggingface.timeout}") timeoutMs: Long
+    @Value("\${neurotools.integration.huggingface.api-url:https://huggingface.co/api}") private val baseUrl: String,
+    @Value("\${neurotools.integration.huggingface.timeout:10000}") timeoutMs: Long
 ) {
     private val log = LoggerFactory.getLogger(HuggingFaceClient::class.java)
     private val restTemplate = restTemplateBuilder

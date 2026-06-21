@@ -1,0 +1,4 @@
+neurotools:
+  sync:
+    startup-enabled: false
+    enabled: false
