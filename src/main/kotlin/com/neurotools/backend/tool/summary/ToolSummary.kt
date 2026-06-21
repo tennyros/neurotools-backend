@@ -1,7 +1,10 @@
-package com.neurotools.backend.tool
+package com.neurotools.backend.tool.summary
 
 import java.math.BigDecimal
 import java.math.RoundingMode
+import com.neurotools.backend.tool.dto.ToolResponse
+import com.neurotools.backend.tool.entity.ToolEntity
+import com.neurotools.backend.tool.mapper.toResponse
 
 data class ToolCatalogSummaryResponse(
     val totalTools: Int,

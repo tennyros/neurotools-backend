@@ -1,6 +1,11 @@
-package com.neurotools.backend.tool
+package com.neurotools.backend.tool.mapper
 
 import java.time.Instant
+import com.neurotools.backend.tool.dto.ToolCreateRequest
+import com.neurotools.backend.tool.dto.ToolResponse
+import com.neurotools.backend.tool.dto.ToolUpdateRequest
+import com.neurotools.backend.tool.entity.ToolEntity
+import com.neurotools.backend.tool.model.ToolPricing
 
 fun ToolEntity.toResponse(): ToolResponse =
     ToolResponse(

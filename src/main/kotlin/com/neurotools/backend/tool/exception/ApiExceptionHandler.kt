@@ -1,4 +1,4 @@
-package com.neurotools.backend.tool
+package com.neurotools.backend.tool.exception
 
 import jakarta.persistence.EntityNotFoundException
 import org.springframework.dao.DataIntegrityViolationException

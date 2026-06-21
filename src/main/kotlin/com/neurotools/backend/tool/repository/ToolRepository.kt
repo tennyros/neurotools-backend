@@ -1,7 +1,8 @@
-package com.neurotools.backend.tool
+package com.neurotools.backend.tool.repository
 
 import org.springframework.data.jpa.repository.JpaRepository
 import java.util.UUID
+import com.neurotools.backend.tool.entity.ToolEntity
 
 interface ToolRepository : JpaRepository<ToolEntity, UUID> {
     fun findBySlug(slug: String): ToolEntity?

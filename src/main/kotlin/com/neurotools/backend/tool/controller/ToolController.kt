@@ -1,4 +1,4 @@
-package com.neurotools.backend.tool
+package com.neurotools.backend.tool.controller
 
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
+import com.neurotools.backend.tool.dto.ToolCreateRequest
+import com.neurotools.backend.tool.dto.ToolResponse
+import com.neurotools.backend.tool.dto.ToolUpdateRequest
+import com.neurotools.backend.tool.service.ToolService
+import com.neurotools.backend.tool.summary.ToolCatalogSummaryResponse
 
 @RestController
 @RequestMapping("/api/tools")

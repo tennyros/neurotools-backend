@@ -1,4 +1,4 @@
-package com.neurotools.backend.tool
+package com.neurotools.backend.tool.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -13,6 +13,7 @@ import org.hibernate.type.SqlTypes
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.UUID
+import com.neurotools.backend.tool.model.ToolPricing
 
 @Entity
 @Table(name = "ai_tools")

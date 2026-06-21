@@ -1,4 +1,4 @@
-package com.neurotools.backend.tool
+package com.neurotools.backend.tool.dto
 
 import jakarta.validation.constraints.DecimalMax
 import jakarta.validation.constraints.DecimalMin
@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Size
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.UUID
+import com.neurotools.backend.tool.model.ToolPricing
 
 data class ToolResponse(
     val id: UUID,

@@ -1,10 +1,14 @@
-package com.neurotools.backend.tool
+package com.neurotools.backend.tool.summary
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.UUID
+import com.neurotools.backend.tool.dto.ToolResponse
+import com.neurotools.backend.tool.entity.ToolEntity
+import com.neurotools.backend.tool.model.ToolPricing
+import com.neurotools.backend.tool.summary.toCatalogSummary
 
 class ToolSummaryTest {
     @Test
