@@ -4,7 +4,7 @@ spring:
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/neurotools}
     username: ${DB_USERNAME:neurotools}
-    password: ${DB_PASSWORD:neurotools}
+    password: ${DB_PASSWORD:}
   jpa:
     hibernate:
       ddl-auto: validate
@@ -16,6 +16,15 @@ spring:
     change-log: classpath:/db/changelog/db.changelog-master.yml
 
 neurotools:
+  security:
+    admin-username: ${ADMIN_USERNAME:}
+    admin-password: ${ADMIN_PASSWORD:}
+    click-token:
+      secret: ${CLICK_TOKEN_SECRET:}
+      ttl-hours: ${CLICK_TOKEN_TTL_HOURS:24}
+    click-rate-limit:
+      max-attempts: ${CLICK_RATE_LIMIT_MAX_ATTEMPTS:5}
+      window-seconds: ${CLICK_RATE_LIMIT_WINDOW_SECONDS:60}
   integration:
     huggingface:
       api-url: ${HUGGINGFACE_API_URL:https://huggingface.co/api}

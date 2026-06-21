@@ -4,7 +4,7 @@ import java.time.Instant
 import com.neurotools.backend.tool.dto.ToolResponse
 import com.neurotools.backend.tool.entity.ToolEntity
 
-fun ToolEntity.toResponse(): ToolResponse =
+fun ToolEntity.toResponse(clickToken: String): ToolResponse =
     ToolResponse(
         id = requireNotNull(id),
         slug = slug,
@@ -15,6 +15,7 @@ fun ToolEntity.toResponse(): ToolResponse =
         description = description,
         fullDescription = fullDescription,
         affiliateLink = affiliateLink,
+        clickToken = clickToken,
         affiliateClicks = affiliateClicks,
         pricing = pricing,
         pros = pros.toList(),

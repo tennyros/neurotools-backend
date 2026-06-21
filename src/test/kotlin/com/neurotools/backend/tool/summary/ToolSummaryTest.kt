@@ -8,6 +8,7 @@ import java.util.UUID
 import com.neurotools.backend.tool.dto.ToolResponse
 import com.neurotools.backend.tool.entity.ToolEntity
 import com.neurotools.backend.tool.model.ToolPricing
+import com.neurotools.backend.tool.mapper.toResponse
 import com.neurotools.backend.tool.summary.toCatalogSummary
 
 class ToolSummaryTest {
@@ -19,7 +20,9 @@ class ToolSummaryTest {
             tool("gamma", "Gamma", "Code", "4.5", 300)
         )
 
-        val summary = tools.toCatalogSummary(featuredLimit = 2)
+        val summary = tools.toCatalogSummary(featuredLimit = 2) { entity ->
+            entity.toResponse("token-${entity.slug}")
+        }
 
         assertEquals(3, summary.totalTools)
         assertEquals(3, summary.categoriesCount)
@@ -29,7 +32,9 @@ class ToolSummaryTest {
 
     @Test
     fun `catalog summary handles empty tools list`() {
-        val summary = emptyList<ToolEntity>().toCatalogSummary()
+        val summary = emptyList<ToolEntity>().toCatalogSummary { entity ->
+            entity.toResponse("token-${entity.slug}")
+        }
 
         assertEquals(0, summary.totalTools)
         assertEquals(0, summary.categoriesCount)

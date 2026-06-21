@@ -1,4 +1,10 @@
 neurotools:
+  security:
+    admin-username: admin
+    admin-password: secret
+    click-token:
+      secret: test-click-secret
+      ttl-hours: 24
   sync:
     startup-enabled: false
     enabled: false

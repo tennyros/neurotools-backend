@@ -3,6 +3,7 @@ package com.neurotools.backend.tool.service
 import com.neurotools.backend.tool.entity.ToolEntity
 import com.neurotools.backend.tool.model.ToolPricing
 import com.neurotools.backend.tool.repository.ToolRepository
+import com.neurotools.backend.config.ClickTokenProperties
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
@@ -12,7 +13,8 @@ import java.util.UUID
 
 class ToolServiceClickTest {
     private val repository: ToolRepository = Mockito.mock(ToolRepository::class.java)
-    private val service = ToolService(repository)
+    private val clickTokenService = ClickTokenService(ClickTokenProperties(secret = "test-secret"))
+    private val service = ToolService(repository, clickTokenService)
 
     @Test
     fun `registerAffiliateClick increments stored click count`() {

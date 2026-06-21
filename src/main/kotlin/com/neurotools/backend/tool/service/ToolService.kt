@@ -12,7 +12,8 @@ import com.neurotools.backend.tool.summary.toCatalogSummary
 
 @Service
 class ToolService(
-    private val repository: ToolRepository
+    private val repository: ToolRepository,
+    private val clickTokenService: ClickTokenService
 ) {
     @Transactional(readOnly = true)
     fun findAll(category: String?, query: String?): List<ToolResponse> {
@@ -28,14 +29,14 @@ class ToolService(
                     it.description.lowercase().contains(normalizedQuery)
             }
             .sortedWith(compareByDescending<ToolEntity> { it.rating }.thenBy { it.name })
-            .map(ToolEntity::toResponse)
+            .map { it.toResponse(clickTokenService.generate(it.slug)) }
             .toList()
     }
 
     @Transactional(readOnly = true)
     fun findBySlug(slug: String): ToolResponse =
         (repository.findBySlug(slug) ?: throw EntityNotFoundException("Tool '$slug' not found"))
-            .toResponse()
+            .toResponse(clickTokenService.generate(slug))
 
     @Transactional
     fun registerAffiliateClick(slug: String) {
@@ -48,5 +49,7 @@ class ToolService(
 
     @Transactional(readOnly = true)
     fun getCatalogSummary(featuredLimit: Int = 3): ToolCatalogSummaryResponse =
-        repository.findAll().toCatalogSummary(featuredLimit)
+        repository.findAll().toCatalogSummary(featuredLimit) { entity ->
+            entity.toResponse(clickTokenService.generate(entity.slug))
+        }
 }

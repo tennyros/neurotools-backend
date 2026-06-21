@@ -4,7 +4,6 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 import com.neurotools.backend.tool.dto.ToolResponse
 import com.neurotools.backend.tool.entity.ToolEntity
-import com.neurotools.backend.tool.mapper.toResponse
 
 data class ToolCatalogSummaryResponse(
     val totalTools: Int,
@@ -13,9 +12,12 @@ data class ToolCatalogSummaryResponse(
     val featuredTools: List<ToolResponse>
 )
 
-fun List<ToolEntity>.toCatalogSummary(featuredLimit: Int = 3): ToolCatalogSummaryResponse {
+fun List<ToolEntity>.toCatalogSummary(
+    featuredLimit: Int = 3,
+    toResponse: (ToolEntity) -> ToolResponse
+): ToolCatalogSummaryResponse {
     val normalizedLimit = featuredLimit.coerceAtLeast(1)
-    val featuredTools = sortedFeaturedTools(normalizedLimit).map(ToolEntity::toResponse)
+    val featuredTools = sortedFeaturedTools(normalizedLimit).map(toResponse)
     val averageRating = if (isEmpty()) {
         BigDecimal.ZERO.setScale(1, RoundingMode.HALF_UP)
     } else {
